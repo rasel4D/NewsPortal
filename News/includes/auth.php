@@ -1,7 +1,7 @@
 <?php
 function check_login() {
     if (!isset($_SESSION['user_id'])) {
-        header('Location: ' . SITE_URL . '../login.php');
+        header('Location: ' . SITE_URL . '../public/login.php');
         exit();
     }
 }

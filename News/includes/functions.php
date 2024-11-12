@@ -8,7 +8,7 @@ function get_latest_news($limit = 10) {
             FROM news_posts n 
             JOIN categories c ON n.category_id = c.id 
             JOIN users u ON n.author_id = u.id 
-            WHERE n.is_published = 1 AND n.is_deleted = 0 
+            WHERE n.is_published = 1 
             ORDER BY n.created_at DESC LIMIT ?";
     
     $stmt = executeQuery($sql, [$limit], 'i');
@@ -20,7 +20,7 @@ function get_news_by_id($id) {
             FROM news_posts n 
             JOIN categories c ON n.category_id = c.id 
             JOIN users u ON n.author_id = u.id 
-            WHERE n.id = ? AND n.is_published = 1 AND n.is_deleted = 0";
+            WHERE n.id = ? AND n.is_published = 1";
     
     $stmt = executeQuery($sql, [$id], 'i');
     return $stmt->get_result()->fetch_assoc();
@@ -28,7 +28,7 @@ function get_news_by_id($id) {
 
 // Category Functions
 function get_categories() {
-    $sql = "SELECT * FROM categories WHERE is_deleted = 0 ORDER BY name";
+    $sql = "SELECT * FROM categories ORDER BY name";
     $result = executeQuery($sql)->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
 }
@@ -62,9 +62,9 @@ function register_user($username, $email, $password) {
     return executeQuery($sql, [$username, $email, $hashed_password], 'sss');
 }
 
-function login_user($email, $password) {
-    $sql = "SELECT * FROM users WHERE email = ? AND is_deleted = 0";
-    $stmt = executeQuery($sql, [$email], 's');
+function login_user($username, $password) {
+    $sql = "SELECT * FROM users WHERE email = ? OR username = ?";
+    $stmt = executeQuery($sql, [$username, $username], 'ss');
     $user = $stmt->get_result()->fetch_assoc();
     
     if ($user && password_verify($password, $user['password'])) {
@@ -84,7 +84,8 @@ function is_admin() {
 
 function require_admin() {
     if (!is_admin()) {
-        header('Location: ' . SITE_URL . 'public\login.php');
+        header('Location: ' . SITE_URL . '/public/login.php');
         exit();
     }
 }
+?>

@@ -1,4 +1,6 @@
 <?php
+require_once '../includes/functions.php';
+require_once '../includes/database.php';
 // Start the session if it's not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Start the session and redirect the user
         $_SESSION['user_id'] = $user_id;
         $_SESSION['username'] = $username;
-        header('Location: index.php');
+        header('<Location:../admin/index.php');
         exit;
     }
 }
@@ -54,10 +56,10 @@ $categories = get_categories();
     <title>Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
 </head>
-<body>
+<body >
 <?php include 'header.php'; ?>
-    <div class="flex justify-center items-center h-screen mx-auto my-auto">
-        <div class="bg-white shadow-md p-8 rounded-lg w-full max-w-md">
+    <div class="flex justify-center items-center h-screen mx-auto my-auto mt-10 ">
+        <div class="bg-indigo-500 shadow-lg shadow-indigo-500/50  p-8 rounded-lg w-full max-w-md">
             <h1 class="text-2xl font-bold mb-4">Register</h1>
 
             <?php if (!empty($errors)): ?>
@@ -74,23 +76,24 @@ $categories = get_categories();
             <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                 <div class="mb-4">
                     <label class="block font-bold mb-2" for="username">Username:</label>
-                    <input class="border rounded-lg py-2 px-3 w-full" type="text" id="username" name="username" required>
+                    <input class="border rounded-lg py-2 px-3 w-full" type="text" id="username" name="username" placeholder="Username" required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-bold mb-2" for="email">Email:</label>
-                    <input class="border rounded-lg py-2 px-3 w-full" type="email" id="email" name="email" required>
+                    <input class="border rounded-lg py-2 px-3 w-full" type="email" id="email" name="email" placeholder="Email" required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-bold mb-2" for="password">Password:</label>
-                    <input class="border rounded-lg py-2 px-3 w-full" type="password" id="password" name="password" required>
+                    <input class="border rounded-lg py-2 px-3 w-full" type="password" id="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="mb-4">
                     <label class="block font-bold mb-2" for="confirm_password">Confirm Password:</label>
-                    <input class="border rounded-lg py-2 px-3 w-full" type="password" id="confirm_password" name="confirm_password" required>
+                    <input class="border rounded-lg py-2 px-3 w-full" type="password" id="confirm_password" name="confirm_password" placeholder="Confirm-Password" required>
                 </div>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full" type="submit">Register</button>
             </form>
         </div>
     </div>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -12,7 +12,7 @@ $categories = get_categories();
     <title><?php echo SITE_NAME; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class='bg-lime-200'>
     <?php include 'header.php'; ?>
 
     <main class="container mx-auto px-4 py-8">
@@ -49,7 +49,6 @@ $categories = get_categories();
             <?php endforeach; ?>
         </div>
     </main>
-
     <?php include 'footer.php'; ?>
 </body>
 </html>

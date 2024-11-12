@@ -14,13 +14,13 @@ $categories = get_categories();
 <body class="bg-gray-100">
 <?php include 'header.php'; ?>
 <main class="container mx-auto px-4 py-8">
-    <div class="bg-white rounded-lg shadow-md p-8">
+    <div class="bg-lime-300 rounded-lg shadow-md p-8">
         <h1 class="text-3xl font-bold mb-4">About Our News Portal</h1>
-        <p class="mb-4">Welcome to our news portal! We are dedicated to providing you with the latest and most relevant news from around the world.</p>
+        <p class="mb-4">Welcome to our news portal! We are dedicated to providing you with the latest and most relevant news from around the Bangladesh.</p>
 
         <div class="mb-8">
             <h2 class="text-2xl font-bold mb-2">Our Mission</h2>
-            <p>Our mission is to be your go-to source for news and information. We strive to deliver accurate, unbiased, and timely news to our readers, helping them stay informed and up-to-date on the events that shape our world.</p>
+            <p>Our mission is to be your go-to source for news and information. We strive to deliver accurate, unbiased, and timely news to our readers, helping them stay informed and up-to-date on the events that shape our Bangladesh.</p>
         </div>
 
         <div class="mb-8">
